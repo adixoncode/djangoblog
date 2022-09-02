@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-    <html lang="pl">
-        <head>
-            <meta charset="UTF-8">
-            <title>Blog dla programistów</title>
-        </head>
-<body>
-<div>
-<h1>Witam na stronie bloga!</h1>
-<h2>Blogo programowaniu</h2>
-<h3>Autor: Adrian Trzebuniak</h3>
-<h4>Wszelkie prawa zastrzeżone</h4>
-    </div>
-{% comment "Komentarz autora" %}
-Tutaj lista postów
-{% endcomment %}
+{% extends 'blog/base.html' %}
+{% block content %}
 {% for post in posts %}
-<div>
+<div class="post">
+    <div class="data">
 <p>opublikowany: {{ post.publish_date }}</p>
-    <h2><a href="">{{post.title}}</a></h2>
+        </div>
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>
     <em>{{post.text|linebreaksbr}}</em>
 </div>
 {% endfor %}
-</body>
-
-</html>
+{% endblock %}
